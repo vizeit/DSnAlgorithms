@@ -57,6 +57,9 @@ if __name__ == "__main__":
         a.push('a')
         a.push(1.2)
         a.push('Test')
+
+        print('Top element is {}'.format(a.top())) #check the top element
+
         print('Lenght of Stack is {}'.format(len(a)))
         print('Last element added is {}'.format(a.top()))
         print('Pop element {}'.format(a.pop()))
