@@ -17,6 +17,10 @@ class BinaryTree:
         """ create empty tree """
         self._root = None
     
+    def getroot(self):
+        """ return root """
+        return self._root
+
     def addroot(self, e):
         """ add root element """
         if self._root == None:
@@ -44,29 +48,45 @@ class BinaryTree:
         else:
             raise ValueError('Right child already exists')
     
-    def inorder(self, root):
-        """ Traverse the tree recursively inorder; leftsubtree -> root -> rightsubtree """
-        if root:
-            yield from self.inorder(root._left)
-            yield root._element
-            yield from self.inorder(root._right)
+    def inorder(self):
+        """ Traverse the tree inorder; leftsubtree -> root -> rightsubtree """
+        yield from self._subinorder(self._root)
     
-    def preorder(self, root):
-        """ Traverse the tree recursively preorder; root -> leftsubtree -> rightsubtree """
+    def _subinorder(self, root):
+        """ non-public subroutine Traverse the tree recursively inorder """
         if root:
+            yield from self._subinorder(root._left)
             yield root._element
-            yield from self.preorder(root._left)
-            yield from self.preorder(root._right)
+            yield from self._subinorder(root._right)
     
-    def postorder(self, root):
-        """ Traverse the tree recursively postorder; leftsubtree -> rightsubtree -> root """
-        if root:
-            yield from self.postorder(root._left)
-            yield from self.postorder(root._right)
-            yield root._element
+    def preorder(self):
+        """ Traverse the tree preorder; root -> leftsubtree -> rightsubtree """
+        yield from self._subpreorder(self._root)
 
-    def breadthfirst(self, root):
+    def _subpreorder(self, root):
+        """ non-public subroutine Traverse the tree recursively preorder """
+        if root:
+            yield root._element
+            yield from self._subpreorder(root._left)
+            yield from self._subpreorder(root._right)
+
+    def postorder(self):
+        """ Traverse the tree postorder; leftsubtree -> rightsubtree -> root """
+        yield from self._subpostorder(self._root)
+    
+    def _subpostorder(self, root):
+        """ non-public subroutine Traverse the tree recursively postorder """
+        if root:
+            yield from self._subpostorder(root._left)
+            yield from self._subpostorder(root._right)
+            yield root._element
+    
+    def breadthfirst(self):
         """ Traverse the tree breadth first """
+        yield from self._subbreadthfirst(self._root)
+
+    def _subbreadthfirst(self, root):
+        """ non-public subroutine Traverse the tree breadth first """
         if root:
             q = LinkedQueue.LinkedQueue()
             q.put(root) #start from the root
@@ -86,16 +106,16 @@ if __name__ == "__main__":
         t.addright(5,el1)
 
         print('Inorder Traversal')
-        for e in t.inorder(rt):
+        for e in t.inorder():
             print(e, end='')
         print('\nPreorder Traversal')
-        for e in t.preorder(rt):
+        for e in t.preorder():
             print(e, end='')
         print('\nPostorder Traversal')
-        for e in t.postorder(rt):
+        for e in t.postorder():
             print(e, end='')
         print('\nBreadth first Traversal')
-        for e in t.breadthfirst(rt):
+        for e in t.breadthfirst():
             print(e, end='')
         print('\n')
         #test adding root element if it already exists
