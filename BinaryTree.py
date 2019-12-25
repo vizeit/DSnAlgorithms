@@ -1,3 +1,5 @@
+import LinkedQueue
+
 class BinaryTree:
     """ Binary tree with Python Linked List """
     class _node:
@@ -63,6 +65,17 @@ class BinaryTree:
             yield from self.postorder(root._right)
             yield root._element
 
+    def breadthfirst(self, root):
+        """ Traverse the tree breadth first """
+        if root:
+            q = LinkedQueue.LinkedQueue()
+            q.put(root) #start from the root
+            while not q.is_empty():
+                n = q.get()
+                yield n._element
+                if n._left: q.put(n._left)
+                if n._right: q.put(n._right)
+
 if __name__ == "__main__":
     try:
         t = BinaryTree()
@@ -80,6 +93,9 @@ if __name__ == "__main__":
             print(e, end='')
         print('\nPostorder Traversal')
         for e in t.postorder(rt):
+            print(e, end='')
+        print('\nBreadth first Traversal')
+        for e in t.breadthfirst(rt):
             print(e, end='')
         print('\n')
         #test adding root element if it already exists
