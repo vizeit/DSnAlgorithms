@@ -17,6 +17,21 @@ class BinarySearchTree(BinaryTree.BinaryTree):
         else:
             self.addright(e, p) if p._right == None else self._subinsert(p._right, e)
 
+    def search(self, e):
+        """ search element in BST, return True if found """
+        if self._root:
+            return self._subsearch(self._root, e)
+    
+    def _subsearch(self, p, e):
+        """ non-public subroutine to recursively search element """
+        if e == p._element:
+            return True
+        elif e < p._element:
+            return False if p._left == None else self._subsearch(p._left, e)
+        else:
+            return False if p._right == None else self._subsearch(p._right, e)
+
+
 if __name__ == "__main__":
     bt = BinarySearchTree()
 
@@ -28,4 +43,10 @@ if __name__ == "__main__":
     for e in bt.inorder():
         print(e, end = ' ')
     print('\n')
-        
+    
+    value = input('Enter element to search in Tree: ')
+
+    if bt.search(int(value)):
+        print('{} is found in Tree'.format(value))
+    else:
+        print('{} is not found in Tree'.format(value))
