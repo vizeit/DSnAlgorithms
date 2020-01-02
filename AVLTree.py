@@ -1,5 +1,4 @@
 import BinaryTree
-import random
 
 class AVLTree(BinaryTree.BinaryTree):
     """ AVL tree with binary tree """
@@ -114,9 +113,11 @@ class AVLTree(BinaryTree.BinaryTree):
 
 
 if __name__ == "__main__":
+    import random
+
     bt = AVLTree()
 
-    rn = 50000
+    rn = 5000
 
     for i in range(rn):
         bt.insert(random.randrange(rn))

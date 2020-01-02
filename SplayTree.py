@@ -1,5 +1,4 @@
 import BinaryTree
-import random
 
 class SplayTree(BinaryTree.BinaryTree):
     """ Splay tree with binary tree """
@@ -76,6 +75,8 @@ class SplayTree(BinaryTree.BinaryTree):
 
 
 if __name__ == "__main__":
+    import random
+    
     bt = SplayTree()
 
     rn = 100

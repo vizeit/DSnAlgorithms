@@ -1,5 +1,4 @@
 import BinaryTree
-import random
 
 class BinarySearchTree(BinaryTree.BinaryTree):
     """ Binary Search tree with Binary Tree """
@@ -33,6 +32,8 @@ class BinarySearchTree(BinaryTree.BinaryTree):
 
 
 if __name__ == "__main__":
+    import random
+    
     bt = BinarySearchTree()
 
     rn = 250
