@@ -12,4 +12,9 @@ def InsertionSort(l):
     return l
 
 if __name__ == "__main__":
-    print(InsertionSort([2, 8, 5, 3, 9, 4, 1, 7, 34, 343535, 54353, 676]))
+    import random
+    rn = 50000
+    s = set()
+    for i in range(rn):
+        s.add(random.randrange(rn))
+    print(InsertionSort(list(s)))
