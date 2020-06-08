@@ -13,8 +13,8 @@ def InsertionSort(l):
 
 if __name__ == "__main__":
     import random
-    rn = 50000
-    s = set()
+    rn = 500
+    l = []
     for i in range(rn):
-        s.add(random.randrange(rn))
-    print(InsertionSort(list(s)))
+        l.append(random.randrange(rn))
+    print(InsertionSort(l))
