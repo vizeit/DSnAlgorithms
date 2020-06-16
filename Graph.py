@@ -109,3 +109,4 @@ if __name__ == "__main__":
     dbfs = {v0:None}
     g.bfs(v0, dbfs)
     print([(i.element(), (j.endpoints()[0].element(),j.endpoints()[1].element()) if j else None) for i,j in dbfs.items()])
+    
