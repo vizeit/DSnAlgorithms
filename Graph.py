@@ -1,5 +1,5 @@
 import LinkedQueue
-
+import PriorityQueue
 class Graph:
     class vertex:
         __slots__ = '_element'
@@ -85,6 +85,32 @@ class Graph:
                 if v not in discovered:
                     discovered[v] = e
                     q.put(v)
+    def dijkstra(self, src):
+        """
+        shortest path from src vertex to all reachable vertices
+        """
+        d = {}
+        rs = {}
+        pq = PriorityQueue.PriorityQueue()
+        pqloc = {}
+        for v in self.vertices():
+            if v == src:
+                d[v] = 0
+            else:
+                d[v] = float('inf')
+            pqloc[v] = pq.add(d[v], v)
+        while not pq.is_empty():
+            key, u = pq.remove_min()
+            rs[u] = key
+            for e in self.incident_edges(u):
+                v = e.opposite(u)
+                if v not in rs:
+                    wgt = e.element()
+                    if d[u] + wgt < d[v]:
+                        d[v] = d[u] + wgt
+                        pq.update(pqloc[v], d[v], v)
+        return rs
+
 
 if __name__ == "__main__":
     g = Graph()
@@ -93,13 +119,13 @@ if __name__ == "__main__":
     v2=g.insert_vertex(2)
     v3=g.insert_vertex(3)
     v4=g.insert_vertex(4)
-    g.insert_edge(v0,v1)
-    g.insert_edge(v0,v4)
-    g.insert_edge(v4,v1)
-    g.insert_edge(v4,v3)
-    g.insert_edge(v1,v3)
-    g.insert_edge(v1,v2)
-    g.insert_edge(v3,v2)
+    g.insert_edge(v0,v1,1)
+    g.insert_edge(v0,v4,3)
+    g.insert_edge(v4,v1,5)
+    g.insert_edge(v4,v3,2)
+    g.insert_edge(v1,v3,1)
+    g.insert_edge(v1,v2,4)
+    g.insert_edge(v3,v2,3)
     print([v.element() for v in g.vertices()])
     print([(e.endpoints()[0].element(),e.endpoints()[1].element()) for e in g.edges()])
     ddfs = {v0:None}
@@ -110,3 +136,4 @@ if __name__ == "__main__":
     g.bfs(v0, dbfs)
     print([(i.element(), (j.endpoints()[0].element(),j.endpoints()[1].element()) if j else None) for i,j in dbfs.items()])
     
+    print([(i.element(), j) for i, j in g.dijkstra(v0).items()])
