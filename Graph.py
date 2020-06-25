@@ -110,7 +110,30 @@ class Graph:
                         d[v] = d[u] + wgt
                         pq.update(pqloc[v], d[v], v)
         return rs
-
+    def bellmanford(self, src):
+        """
+        Find negative cycles. 
+        return True if no negative cycle
+        return False if negative cycle
+        """
+        d = {}
+        for v in self.vertices():
+            if v == src:
+                d[v] = 0
+            else:
+                d[v] = float('inf')
+        for _ in range(self.vertex_count()-1):
+            for e in self.edges():
+                org, dst = e.endpoints()
+                if d[org] + e.element() < d[dst]:
+                    d[dst] = d[org] + e.element()
+        #relax edges one more time, if value changes there is negative cycle
+        for _ in range(self.vertex_count()-1):
+            for e in self.edges():
+                org, dst = e.endpoints()
+                if d[org] + e.element() < d[dst]:
+                    return False #there is a negative cycle
+        return True
 
 if __name__ == "__main__":
     g = Graph()
@@ -136,3 +159,17 @@ if __name__ == "__main__":
     g.bfs(v0, dbfs)
     print([(i.element(), (j.endpoints()[0].element(),j.endpoints()[1].element()) if j else None) for i,j in dbfs.items()])
     print([(i.element(), j) for i, j in g.dijkstra(v0).items()])
+    print(g.bellmanford(v0))
+    gn = Graph()
+    vn0=gn.insert_vertex(0)
+    vn1=gn.insert_vertex(1)
+    vn2=gn.insert_vertex(2)
+    vn3=gn.insert_vertex(3)
+    
+    gn.insert_edge(vn0,vn2,-2)
+    gn.insert_edge(vn1,vn0,4)
+    gn.insert_edge(vn1,vn2,-3)
+    gn.insert_edge(vn2,vn3,2)
+    gn.insert_edge(vn3,vn1,-1)
+    
+    print(gn.bellmanford(vn1))#negative cycle detected
