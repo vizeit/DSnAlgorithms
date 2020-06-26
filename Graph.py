@@ -1,6 +1,9 @@
 import LinkedQueue
 import PriorityQueue
 class Graph:
+    """
+    Graph with adjacency list representation
+    """
     class vertex:
         __slots__ = '_element'
         def __init__(self, e):
