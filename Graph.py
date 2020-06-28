@@ -137,6 +137,32 @@ class Graph:
                 if d[org] + e.element() < d[dst]:
                     return False #there is a negative cycle
         return True
+    def mst_primjarnik(self):
+        d = {}
+        tree = []
+        pq = PriorityQueue.PriorityQueue()
+        pqloc = {}
+        for v in self.vertices():
+            if len(d) == 0:
+                d[v] = 0
+            else:
+                d[v] = float('inf')
+            pqloc[v] = pq.add(d[v], (v, None))
+        while not pq.is_empty():
+            key, val = pq.remove_min()
+            u, e = val
+            del pqloc[u]
+            if e is not None:
+                tree.append(e)
+            for link in self.incident_edges(u):
+                v = link.opposite(u)
+                if v in pqloc:
+                    w = link.element()
+                    if w < d[v]:
+                        d[v] = w
+                        pq.update(pqloc[v], d[v], (v, link))
+        return tree
+
 
 if __name__ == "__main__":
     g = Graph()
@@ -176,3 +202,27 @@ if __name__ == "__main__":
     gn.insert_edge(vn3,vn1,-1)
     
     print(gn.bellmanford(vn1))#negative cycle detected
+
+    gp = Graph()
+    vg0 = gp.insert_vertex(0)
+    vg1 = gp.insert_vertex(1)
+    vg2 = gp.insert_vertex(2)
+    vg3 = gp.insert_vertex(3)
+    vg4 = gp.insert_vertex(4)
+    vg5 = gp.insert_vertex(5)
+    vg6 = gp.insert_vertex(6)
+
+    gp.insert_edge(vg0, vg2, 0)
+    gp.insert_edge(vg0, vg5, 7)
+    gp.insert_edge(vg0, vg1, 9)
+    gp.insert_edge(vg0, vg3, 5)
+    gp.insert_edge(vg2, vg5, 6)
+    gp.insert_edge(vg5, vg3, 2)
+    gp.insert_edge(vg5, vg6, 1)
+    gp.insert_edge(vg3, vg6, 3)
+    gp.insert_edge(vg3, vg1, -2)
+    gp.insert_edge(vg1, vg6, 4)
+    gp.insert_edge(vg1, vg4, 3)
+    gp.insert_edge(vg6, vg4, 6)
+
+    print([(e.endpoints()[0].element(), e.endpoints()[1].element()) for e in gp.mst_primjarnik()])
