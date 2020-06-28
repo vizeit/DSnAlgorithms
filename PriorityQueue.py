@@ -43,7 +43,7 @@ class PriorityQueue:
         return token
     def update(self, loc, k, v):
         j = loc._index
-        if not (j > 0 and j < len(self._data) and self._data[j] is loc):
+        if not (j >= 0 and j < len(self._data) and self._data[j] is loc):
             raise ValueError('Invalid Locator')
         loc._key = k
         loc._value = v
