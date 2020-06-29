@@ -1,5 +1,6 @@
 import LinkedQueue
 import PriorityQueue
+import Partition
 class Graph:
     """
     Graph with adjacency list representation
@@ -162,6 +163,25 @@ class Graph:
                         d[v] = w
                         pq.update(pqloc[v], d[v], (v, link))
         return tree
+    def mst_kruskal(self):
+        tree = []
+        pq = PriorityQueue.PriorityQueue()
+        forest = Partition.Partition()
+        position = {}
+        for v in self.vertices():
+            position[v] = forest.make_group(v)
+        for e in self.edges():
+            pq.add(e.element(), e)
+        size = self.vertex_count()
+        while len(tree) != size - 1 and not pq.is_empty():
+            weight, edge = pq.remove_min()
+            u, v = edge.endpoints()
+            a = forest.find(position[u])
+            b = forest.find(position[v])
+            if a != b:
+                tree.append(edge)
+                forest.union(a, b)
+        return tree
 
 
 if __name__ == "__main__":
@@ -226,3 +246,4 @@ if __name__ == "__main__":
     gp.insert_edge(vg6, vg4, 6)
 
     print([(e.endpoints()[0].element(), e.endpoints()[1].element()) for e in gp.mst_primjarnik()])
+    print([(e.endpoints()[0].element(), e.endpoints()[1].element()) for e in gp.mst_kruskal()])
