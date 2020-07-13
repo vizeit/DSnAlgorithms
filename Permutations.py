@@ -1,5 +1,5 @@
 def _subpermutations(k, s, u, rs):
-    for i, e in enumerate(u):
+    for i in range(len(u)):
         s.append(u.pop(i))
         if k == 1:
             rs.append(''.join(s))
