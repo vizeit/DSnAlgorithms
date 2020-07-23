@@ -1,16 +1,15 @@
-def _subcombinations(ls, r, rs, s=[]):
+def _subcombinations(ls, r, s=[]):
     for i in range(len(ls)):
-        if len(s) + (len(ls)-i) < r: return #avoid any extra cycles
         s.append(ls[i])
-        rs.append(''.join(s)) if len(s) == r else _subcombinations(ls[i+1:], r, rs, s)
+        if len(s) == r: yield ''.join(s) 
+        yield from _subcombinations(ls[i+1:], r, s)
         s.pop()
 
 def combinations(s):
-    rs = []
     l = list(s)
     for i in range(1,len(l)+1):
-        _subcombinations(l,i,rs)
-    return rs
+        yield from _subcombinations(l,i)
 
 if __name__ == "__main__":
-    print(combinations('abc'))
+    for c in combinations('abc'):
+        print(c, end=' ')
