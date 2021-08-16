@@ -1,6 +1,6 @@
-import BinaryTree
+from BinaryTree import BinaryTree
 
-class BinarySearchTree(BinaryTree.BinaryTree):
+class BinarySearchTree(BinaryTree):
     """ Binary Search tree with Binary Tree """
     def insert(self, e):
         """ insert element into BST """

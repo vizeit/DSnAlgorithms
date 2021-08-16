@@ -1,4 +1,4 @@
-import LinkedQueue
+from LinkedQueue import LinkedQueue
 
 class BinaryTree:
     """ Binary tree with Python Linked List """
@@ -88,7 +88,7 @@ class BinaryTree:
     def _subbreadthfirst(self, root):
         """ non-public subroutine Traverse the tree breadth first """
         if root:
-            q = LinkedQueue.LinkedQueue()
+            q = LinkedQueue()
             q.put(root) #start from the root
             while not q.is_empty():
                 n = q.get()

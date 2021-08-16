@@ -1,8 +1,8 @@
-import BinaryTree
+from BinaryTree import BinaryTree
 
-class AVLTree(BinaryTree.BinaryTree):
+class AVLTree(BinaryTree):
     """ AVL tree with binary tree """
-    class _node(BinaryTree.BinaryTree._node):
+    class _node(BinaryTree._node):
         """ AVL node class maintains height and balance """
         __slots__ = '_height'
 

@@ -1,6 +1,6 @@
-import LinkedQueue
-import PriorityQueue
-import Partition
+from LinkedQueue import LinkedQueue
+from PriorityQueue import PriorityQueue
+from Partition import Partition
 class Graph:
     """
     Graph with adjacency list representation
@@ -80,7 +80,7 @@ class Graph:
         """
         u - starting vertex initialized int discovered dictionary
         """
-        q = LinkedQueue.LinkedQueue()
+        q = LinkedQueue()
         q.put(u)
         while not q.is_empty():
             s = q.get()
@@ -95,7 +95,7 @@ class Graph:
         """
         d = {}
         rs = {}
-        pq = PriorityQueue.PriorityQueue()
+        pq = PriorityQueue()
         pqloc = {}
         for v in self.vertices():
             if v == src:
@@ -141,7 +141,7 @@ class Graph:
     def mst_primjarnik(self):
         d = {}
         tree = []
-        pq = PriorityQueue.PriorityQueue()
+        pq = PriorityQueue()
         pqloc = {}
         for v in self.vertices():
             if len(d) == 0:
@@ -165,8 +165,8 @@ class Graph:
         return tree
     def mst_kruskal(self):
         tree = []
-        pq = PriorityQueue.PriorityQueue()
-        forest = Partition.Partition()
+        pq = PriorityQueue()
+        forest = Partition()
         position = {}
         for v in self.vertices():
             position[v] = forest.make_group(v)

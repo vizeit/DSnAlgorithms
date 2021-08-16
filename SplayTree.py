@@ -1,6 +1,6 @@
-import BinaryTree
+from BinaryTree import BinaryTree
 
-class SplayTree(BinaryTree.BinaryTree):
+class SplayTree(BinaryTree):
     """ Splay tree with binary tree """
     
     def _splay(self, p):
