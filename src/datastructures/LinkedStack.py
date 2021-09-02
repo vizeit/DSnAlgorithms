@@ -1,6 +1,4 @@
-class Empty(Exception):
-    """ Custom exception class for Empty Stack """
-    pass
+from . import EmptyStack
 
 class LinkedStack:
     """
@@ -38,7 +36,7 @@ class LinkedStack:
         if not self.is_empty():
             return self._head._element
         else:
-            raise Empty('Stack is empty') #Raise an excepton if Stack is empty
+            raise EmptyStack('Stack is empty') #Raise an excepton if Stack is empty
     
     def pop(self):
         """ Return and remove last element from Stack """
@@ -48,30 +46,4 @@ class LinkedStack:
             self._size -= 1
             return e
         else:
-            raise Empty('Stack is empty') #Raise an excepton if Stack is empty
-
-if __name__ == "__main__":
-    try:
-        a = LinkedStack()
-        a.push(1)
-        a.push('a')
-        a.push(1.2)
-        a.push('Test')
-
-        print('Top element is {}'.format(a.top())) #check the top element
-
-        print('Lenght of Stack is {}'.format(len(a)))
-        print('Last element added is {}'.format(a.top()))
-        print('Pop element {}'.format(a.pop()))
-        print('Lenght of Stack is {}'.format(len(a)))
-        print('Pop element {}'.format(a.pop()))
-        print('Lenght of Stack is {}'.format(len(a)))
-        print('Pop element {}'.format(a.pop()))
-        print('Lenght of Stack is {}'.format(len(a)))
-        print('Pop element {}'.format(a.pop()))
-        print('Lenght of Stack is {}'.format(len(a)))
-        #try pop when Stack is empty
-        print('Pop element {}'.format(a.pop()))
-        print('Lenght of Stack is {}'.format(len(a)))
-    except Empty as e:
-        print(e)
+            raise EmptyStack('Stack is empty') #Raise an excepton if Stack is empty
