@@ -1,4 +1,4 @@
-from LinkedQueue import LinkedQueue
+from . import LinkedQueue
 
 class BinaryTree:
     """ Binary tree with Python Linked List """
