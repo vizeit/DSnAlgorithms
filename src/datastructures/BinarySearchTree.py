@@ -1,4 +1,4 @@
-from BinaryTree import BinaryTree
+from . import BinaryTree
 
 class BinarySearchTree(BinaryTree):
     """ Binary Search tree with Binary Tree """
@@ -29,25 +29,3 @@ class BinarySearchTree(BinaryTree):
             return False if p._left == None else self._subsearch(p._left, e)
         else:
             return False if p._right == None else self._subsearch(p._right, e)
-
-
-if __name__ == "__main__":
-    import random
-    
-    bt = BinarySearchTree()
-
-    rn = 250
-
-    for i in range(rn):
-        bt.insert(random.randrange(rn))
-
-    for e in bt.inorder():
-        print(e, end = ' ')
-    print('\n')
-    
-    value = input('Enter element to search in Tree: ')
-
-    if bt.search(int(value)):
-        print('{} is found in Tree'.format(value))
-    else:
-        print('{} is not found in Tree'.format(value))
