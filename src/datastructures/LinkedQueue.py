@@ -1,4 +1,4 @@
-class Empty(Exception):
+class EmptyQueue(Exception):
     """ Custom exception class for Empty Stack """
     pass
 
@@ -42,7 +42,7 @@ class LinkedQueue:
         if not self.is_empty():
             return self._head._element
         else:
-            raise Empty('Queue is empty') #Raise an excepton if Queue is empty
+            raise EmptyQueue('Queue is empty') #Raise an excepton if Queue is empty
 
     def get(self):
         """ remove first element from queue """
@@ -54,7 +54,7 @@ class LinkedQueue:
                 self._tail = None
             return e
         else:
-            raise Empty('Queue is empty') #Raise an excepton if Queue is empty
+            raise EmptyQueue('Queue is empty') #Raise an excepton if Queue is empty
 
 if __name__ == "__main__":
     try:

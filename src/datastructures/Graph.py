@@ -1,6 +1,6 @@
-from LinkedQueue import LinkedQueue
-from PriorityQueue import PriorityQueue
-from Partition import Partition
+from .LinkedQueue import LinkedQueue
+from .PriorityQueue import PriorityQueue
+from .Partition import Partition
 class Graph:
     """
     Graph with adjacency list representation
@@ -182,68 +182,3 @@ class Graph:
                 tree.append(edge)
                 forest.union(a, b)
         return tree
-
-
-if __name__ == "__main__":
-    g = Graph()
-    v0=g.insert_vertex(0)
-    v1=g.insert_vertex(1)
-    v2=g.insert_vertex(2)
-    v3=g.insert_vertex(3)
-    v4=g.insert_vertex(4)
-    g.insert_edge(v0,v1,1)
-    g.insert_edge(v0,v4,3)
-    g.insert_edge(v4,v1,5)
-    g.insert_edge(v4,v3,2)
-    g.insert_edge(v1,v3,1)
-    g.insert_edge(v1,v2,4)
-    g.insert_edge(v3,v2,3)
-    print([v.element() for v in g.vertices()])
-    print([(e.endpoints()[0].element(),e.endpoints()[1].element()) for e in g.edges()])
-    ddfs = {v0:None}
-    g.dfs(v0, ddfs)
-    print([(i.element(), (j.endpoints()[0].element(),j.endpoints()[1].element()) if j else None) for i,j in ddfs.items()])
-
-    dbfs = {v0:None}
-    g.bfs(v0, dbfs)
-    print([(i.element(), (j.endpoints()[0].element(),j.endpoints()[1].element()) if j else None) for i,j in dbfs.items()])
-    print([(i.element(), j) for i, j in g.dijkstra(v0).items()])
-    print(g.bellmanford(v0))
-    gn = Graph()
-    vn0=gn.insert_vertex(0)
-    vn1=gn.insert_vertex(1)
-    vn2=gn.insert_vertex(2)
-    vn3=gn.insert_vertex(3)
-    
-    gn.insert_edge(vn0,vn2,-2)
-    gn.insert_edge(vn1,vn0,4)
-    gn.insert_edge(vn1,vn2,-3)
-    gn.insert_edge(vn2,vn3,2)
-    gn.insert_edge(vn3,vn1,-1)
-    
-    print(gn.bellmanford(vn1))#negative cycle detected
-
-    gp = Graph()
-    vg0 = gp.insert_vertex(0)
-    vg1 = gp.insert_vertex(1)
-    vg2 = gp.insert_vertex(2)
-    vg3 = gp.insert_vertex(3)
-    vg4 = gp.insert_vertex(4)
-    vg5 = gp.insert_vertex(5)
-    vg6 = gp.insert_vertex(6)
-
-    gp.insert_edge(vg0, vg2, 0)
-    gp.insert_edge(vg0, vg5, 7)
-    gp.insert_edge(vg0, vg1, 9)
-    gp.insert_edge(vg0, vg3, 5)
-    gp.insert_edge(vg2, vg5, 6)
-    gp.insert_edge(vg5, vg3, 2)
-    gp.insert_edge(vg5, vg6, 1)
-    gp.insert_edge(vg3, vg6, 3)
-    gp.insert_edge(vg3, vg1, -2)
-    gp.insert_edge(vg1, vg6, 4)
-    gp.insert_edge(vg1, vg4, 3)
-    gp.insert_edge(vg6, vg4, 6)
-
-    print([(e.endpoints()[0].element(), e.endpoints()[1].element()) for e in gp.mst_primjarnik()])
-    print([(e.endpoints()[0].element(), e.endpoints()[1].element()) for e in gp.mst_kruskal()])

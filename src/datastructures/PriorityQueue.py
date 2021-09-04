@@ -1,6 +1,4 @@
-class Empty(Exception):
-    """ Custom exception class for Empty Stack """
-    pass
+from .LinkedQueue import EmptyQueue
 
 class PriorityQueue:
     class Locator:
@@ -77,30 +75,13 @@ class PriorityQueue:
                 self._downheap(small)
     def min(self):
         if self.is_empty():
-            raise Empty('Priority queue is empty')
+            raise EmptyQueue('Priority queue is empty')
         item = self._data[0]
         return (item._key, item._value)
     def remove_min(self):
         if self.is_empty():
-            raise Empty('Priority queue is empty')
+            raise EmptyQueue('Priority queue is empty')
         self._swap(0, len(self._data)-1)
         item = self._data.pop()
         self._downheap(0)
         return (item._key, item._value)
-
-if __name__ == "__main__":
-    try:
-        import random
-        rn = 100
-        pq = PriorityQueue()
-        d = {}
-        for i in range(rn):
-            t = random.randrange(rn)
-            loc = pq.add(t, t*10)
-            d[t] = loc
-        m = max(d.keys())
-        pq.update(d[m], -1, -1)
-        for i in range(len(pq)):
-            print(pq.remove_min(), end=' ')
-    except Empty as e:
-        print(e)

@@ -29,13 +29,3 @@ class Partition:
             else:
                 a._parent = b
                 b._size += a._size
-
-if __name__ == "__main__":
-    p = Partition()
-    pos = {}
-    for i in range(10):
-        pos[i] = p.make_group(i)
-    
-    for i, j in zip(range(5), range(9,4, -1)):
-        p.union(pos[i], pos[j])
-

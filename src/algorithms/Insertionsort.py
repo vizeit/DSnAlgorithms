@@ -1,4 +1,4 @@
-def InsertionSort(l):
+def Insertionsort(l):
     """
     Insertion sort
     """
@@ -10,11 +10,3 @@ def InsertionSort(l):
             j -= 1
         i += 1
     return l
-
-if __name__ == "__main__":
-    import random
-    rn = 500
-    l = []
-    for i in range(rn):
-        l.append(random.randrange(rn))
-    print(InsertionSort(l))

@@ -1,12 +1,12 @@
-def MergeSort(l):
+def Mergesort(l):
     """
     Merge Sort
     """
     if len(l) <= 1:
         return l
 
-    ll = MergeSort(l[:len(l)//2])
-    lr = MergeSort(l[len(l)//2:])
+    ll = Mergesort(l[:len(l)//2])
+    lr = Mergesort(l[len(l)//2:])
     return Merge(ll, lr)
 
 def Merge(ll, lr):
@@ -26,11 +26,3 @@ def Merge(ll, lr):
             l.append(lr[j])
             j += 1
     return l
-
-if __name__ == "__main__":
-    import random
-    rn = 500
-    l = []
-    for i in range(rn):
-        l.append(random.randrange(rn))
-    print(MergeSort(l))
