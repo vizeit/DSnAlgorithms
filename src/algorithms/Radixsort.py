@@ -17,7 +17,7 @@ def countingsort(l, d, r):
    
    return out
 
-def radixsort(l, m, r):
+def Radixsort(l, m, r):
    #l - list to sort
    #m - maximum digits for numbers in list
    #r - radix
@@ -26,11 +26,3 @@ def radixsort(l, m, r):
       out = countingsort(out, i, r)
    
    return out
-
-if __name__ == "__main__":
-   import random
-   rn = 500
-   l = []
-   for i in range(rn):
-      l.append(random.randrange(rn))
-   print(radixsort(l, 3, 10))

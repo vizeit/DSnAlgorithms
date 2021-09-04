@@ -28,15 +28,6 @@ def _quicksort(l, lo, hi):
     _quicksort(l, lo, ip-1)
     _quicksort(l, ip+1, hi)
 
-def quicksort(l):
+def Quicksort(l):
     _quicksort(l, 0, len(l)-1)
-
-if __name__ == "__main__":
-    import random
-    rn = 5000
-    l = []
-    for i in range(rn):
-        l.append(random.randrange(rn))
-    quicksort(l)
-    print(l)
     

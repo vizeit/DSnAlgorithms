@@ -7,3 +7,6 @@ from .AVLTree import AVLTree
 from .SplayTree import SplayTree
 from .PriorityQueue import PriorityQueue
 from .Partition import Partition
+from .Heap import Heap, EmptyHeap
+from .GraphM import GraphM
+from .Graph import Graph

@@ -16,6 +16,8 @@ class GraphM:
         self._vertices = set()
     def vertices(self):
         return self._vertices
+    def edges(self):
+        return self._edges
     def insert_vertex(self, e=None):
         v = self.vertex(e)
         self._vertices.add(v)
@@ -52,28 +54,3 @@ class GraphM:
                         dp[i][j] = -float('inf')
         
         return dp
-    
-if __name__ == "__main__":
-    g = GraphM()
-    v0 = g.insert_vertex('a')
-    v1 = g.insert_vertex('b')
-    v2 = g.insert_vertex('c')
-    v3 = g.insert_vertex('d')
-    v4 = g.insert_vertex('e')
-    v5 = g.insert_vertex('f')
-    v6 = g.insert_vertex('g')
-    g.insert_edge(v0,v1,4)
-    g.insert_edge(v0,v6,2)
-    g.insert_edge(v1,v1,-1)
-    g.insert_edge(v1,v2,3)
-    g.insert_edge(v6,v4,2)
-    g.insert_edge(v2,v4,1)
-    g.insert_edge(v2,v3,3)
-    g.insert_edge(v3,v5,-2)
-    g.insert_edge(v4,v5,2)
-
-    d = g.floydwarshall()
-    for i in g.vertices():
-        for j in g.vertices():
-            if d[i][j] != float('inf'):
-                print(i.element(), j.element(), d[i][j])

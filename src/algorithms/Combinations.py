@@ -8,11 +8,7 @@ def _subcombinations(ls, r, s=[]):
             yield from _subcombinations(ls[i+1:], r, s)
         s.pop()
 
-def combinations(s):
+def Combinations(s):
     l = list(s)
     for i in range(1,len(l)+1):
         yield from _subcombinations(l,i)
-
-if __name__ == "__main__":
-    for c in combinations('abc'):
-        print(c, end=' ')

@@ -1,8 +1,8 @@
-class Empty(Exception):
+class EmptyHeap(Exception):
     """ Custom exception class for Empty Stack """
     pass
 
-class heap:
+class Heap:
     """ heap data structure """
     def __init__(self):
         self._data = []
@@ -19,7 +19,7 @@ class heap:
     
     def pop(self):
         if self.is_empty():
-            raise Empty('Heap is empty')
+            raise EmptyHeap('Heap is empty')
         self._data[-1], self._data[0] = self._data[0], self._data[-1]
         d = self._data.pop()
         self._downheap()
@@ -52,17 +52,3 @@ class heap:
     def heapify(self, l):
         for i in l:
             self.push(i)
-
-
-if __name__ == "__main__":
-    try:
-
-        import random
-        rn = 1000
-        h = heap()
-        for i in range(rn):
-            h.push(random.randrange(rn))
-        for i in range(len(h)):
-            print(h.pop(), end=' ')
-    except Empty as e:
-        print(e)
